@@ -1,5 +1,6 @@
 #!/usr/bin/python
 #WPAShoot Adalah Tools Untuk Audit Keamanan Jaringan Wireless Yang Berbasis aircrack-ng suite
+#Created By HardGhost Alkori
 ##############################################################################################
 
 import os.path
