@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 #WPAShoot Adalah Tools Untuk Audit Keamanan Jaringan Wireless Yang Berbasis aircrack-ng suite
 #Created By HardGhost Alkori
 ##############################################################################################
@@ -20,6 +20,7 @@ def check():
  else:
   print "Aircrack-ng",colored ("[NOT INSTALLED]",'red')," Please Install aircrack-ng"
   exit()
+
 def check2():
  path = '/usr/bin/leafpad'
  if os.path.exists(path):
@@ -28,6 +29,7 @@ def check2():
  else:
   print "Leafpad", colored("[NOT INSTALLED]",'red'), "Please Install Leafpad"
   exit()
+
 def check3():
  path = '/usr/bin/crunch'
  if os.path.exists(path):
@@ -35,17 +37,21 @@ def check3():
  else:
   print "Crunch", colored("[NOT INSATLLED]",'red'), "Please Install Crunch"
   exit()
+
 def check4():
  path = '/usr/bin/macchanger'
  if os.path.exists(path):
    print "macchanger",colored("[OK]","green")
  else:
   print "macchanger",colored("[NOT INSTALLED]",'red'),"Please Install Macchanger"
+
 check()
 check2()
 check3()
 check4()
+
 time.sleep(1.5)
+
 os.system("clear")
 
 def opening():
@@ -124,14 +130,11 @@ def pilih():
   pilih()
  else:
   print ("Pilihan Tidak Ada Di Menu!")
- os.system("clear")
-def mac(): 
- interface = raw_input("Input Your Monitor Interfaces: ")
- pid = subprocess.Popen(args=["airodump-ng",interface])
- mac = raw_input("Input New Mac Address: ")
- pid2 = subprocess.Popen(args=["macchanger","-m",mac])
+os.system("clear")
+
 def interface():
  pid =subprocess.Popen(args=["xterm","-hold","-e","airmon-ng"])
+
 def restart():
  print ("Restarting Service Networking...")
  os.system ("service networking restart")
@@ -139,11 +142,13 @@ def restart():
  os.system("service NetworkManager restart")
  print ("Removing Wireless Monitor Interface...")
  os.system("airmon-ng stop mon0")
+
 def monitor():
  os.system("xterm -e airmon-ng check kill")
  os.system("xterm -e airmon-ng start wlan0")
  os.system("clear")
  menu()
+
 def inject():
  print "Berfungsi Untuk Testing Adapter Apakah Support Injection Atau Tidak"
  print
@@ -153,6 +158,7 @@ def inject():
  pid = subprocess.Popen(args=["xterm","-hold","-e","aireplay-ng --test "+interface])
  os.system("clear")
  menu()
+
 def scan():
  print "Berfungsi Untuk Scan Jaringan Wifi Di sekitar"
  print
@@ -162,6 +168,7 @@ def scan():
  os.system("clear")
  menu()
  print "type ctrl+c when done"
+
 def capture():
  print "Berfungsi Untuk Memonitor Acces Point Yang Target Nya sudah di tentukan"
  print
@@ -171,6 +178,7 @@ def capture():
  write=raw_input ("Masukan Nama Hasil Capture:")
  pid = subprocess.Popen(args=["xterm","-hold","-e","airodump-ng", "-c" ,channel, "--bssid" ,bssid ,"-w" ,write, interface])
  menu()
+
 def handshake():
  print "Berfungsi Untuk Memutuskan Client Dan Menangkap Informasi User Ke Acces Point Termasuk Enskripsi WPAnya"
  print
@@ -185,6 +193,7 @@ def wpa():
  capture=raw_input("Your Capture File: ")
  os.system("xterm -hold -e aircrack-ng -w %s %s"%(wordlist,capture))
  menu()
+
 def extra():
  minimum = raw_input("Insert Minimum Wordlist *WPA Minimum 8 : ")
  maximum = raw_input("Insert Maximum Wordlist: ")
@@ -194,6 +203,12 @@ def extra():
  charset = raw_input("Insert Charset Type:")
  output = raw_input ("Insert Your Output Name: ")
  pid = subprocess.Popen(args=["xterm","-hold","-e","crunch" ,minimum, maximum, "-f", "/usr/share/crunch/charset.lst" ,charset,"-o","/root/"+output])
+
+def mac(): 
+ interface = raw_input("Input Your Monitor Interfaces: ")
+ subprocess.Popen(args=["ifconfig" ,interface,"down"])
+ mac = raw_input("Input Your New Mac Address: ")
+ subprocess.Popen(args=["macchanger","-m" ,mac,interface])
 
 while menu:
  menu()
