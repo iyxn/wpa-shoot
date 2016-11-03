@@ -44,11 +44,18 @@ def check4():
    print "macchanger",colored("[OK]","green")
  else:
   print "macchanger",colored("[NOT INSTALLED]",'red'),"Please Install Macchanger"
+def check5():
+ path = '/usr/bin/xterm'
+ if os.path.exists(path):
+  print "xterm",colored("[OK]","green")
+ else:
+  print "xterm",colored("[NOT INSTALLED]",'red'),"Please Install xterm"
 
 check()
 check2()
 check3()
 check4()
+check5()
 
 time.sleep(1.5)
 
