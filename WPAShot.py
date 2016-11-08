@@ -121,7 +121,6 @@ def menu() :
  print colored(" 5.Capture Packet Specific by Target Acces Point",'green')
  print colored(" 6.Capture Handshake or WPA Encryption",'green')
  print colored(" 7.Crack WPA Encrytion!",'green')
- print colored(" 8.Crack WPA Encryption! [HASHCAT]",'green')
  print colored(" 9.Restart Service NetworkManager And Networking",'green')
  print colored("               ----EXTRAS----",'yellow')
  print colored(" 99.Create Wordlist [Crunch]",'red')
