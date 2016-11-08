@@ -1,7 +1,22 @@
-#!/usr/bin/env python
+#!/usr/bin/python
+# wpa-shoot
 #WPAShoot Adalah Tools Untuk Audit Keamanan Jaringan Wireless Yang Berbasis aircrack-ng suite
-#Created By HardGhost Alkori
-##############################################################################################
+#Jika Anda Ingin Mengedit Source Code Tolong Sertakan Nama Code Writernya.
+#
+#Version: 1.0 Beta
+#Code Writer: HardGhost
+#Web Page : Hardghost-sec.blogspot.com
+#
+#Jika Terjadi Error Pada File WPAShot.py Silahkan Eksekusi File bernama wpashot2.py.
+#
+#Required Tools:
+#-Aircrack-ng
+#-Leafpad
+#-macchanger
+#-crunch
+#-xterm
+#
+#Copyright HardGhostID
 
 import os.path
 import os
@@ -50,12 +65,19 @@ def check5():
   print "xterm",colored("[OK]","green")
  else:
   print "xterm",colored("[NOT INSTALLED]",'red'),"Please Install xterm"
+def check6():
+ path = '/usr/bin/hashcat'
+ if os.path.exists(path):
+  print "Hashcat",colored("[OK]","green")
+ else:
+  print "Hashcat",colored("[NOT INSTALLED]",'red'),"Please Install Hashcat"
 
 check()
 check2()
 check3()
 check4()
 check5()
+check6()
 
 time.sleep(1.5)
 
@@ -99,10 +121,12 @@ def menu() :
  print colored(" 5.Capture Packet Specific by Target Acces Point",'green')
  print colored(" 6.Capture Handshake or WPA Encryption",'green')
  print colored(" 7.Crack WPA Encrytion!",'green')
- print colored(" 8.Restart Service NetworkManager And Networking",'green')
+ print colored(" 8.Crack WPA Encryption! [HASHCAT]",'green')
+ print colored(" 9.Restart Service NetworkManager And Networking",'green')
  print colored("               ----EXTRAS----",'yellow')
  print colored(" 99.Create Wordlist [Crunch]",'red')
  print colored(" 88.Change Mac Address",'red')
+ print colored(" 77.Create Hashcat Capture File",'red')
  print colored(" 00.Exit",'red')
 
 def pilih():
@@ -132,9 +156,8 @@ def pilih():
   extra()
  elif pilih == 88:
   mac()
- elif pilih == ' ':
-  menu()
-  pilih()
+ elif pilih == 77:
+  hashcat_capture()
  else:
   print ("Pilihan Tidak Ada Di Menu!")
 os.system("clear")
@@ -217,6 +240,9 @@ def mac():
  mac = raw_input("Input Your New Mac Address: ")
  subprocess.Popen(args=["macchanger","-m" ,mac,interface])
 
+def hashcat_capture():
+ file = raw_input("Insert Your Capture File: ")
+ subprocess.Popen(args=["xterm","-hold","-e","aircrack-ng","-J" ,file])
 while menu:
  menu()
  pilih()
