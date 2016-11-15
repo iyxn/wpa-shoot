@@ -59,6 +59,7 @@ def check4():
    print "macchanger",colored("[OK]","green")
  else:
   print "macchanger",colored("[NOT INSTALLED]",'red'),"Please Install Macchanger"
+  exit()
 def check5():
  path = '/usr/bin/xterm'
  if os.path.exists(path):
@@ -71,7 +72,7 @@ def check6():
   print "Hashcat",colored("[OK]","green")
  else:
   print "Hashcat",colored("[NOT INSTALLED]",'red'),"Please Install Hashcat"
-
+  exit()
 check()
 check2()
 check3()
@@ -121,6 +122,7 @@ def menu() :
  print colored(" 5.Capture Packet Specific by Target Acces Point",'green')
  print colored(" 6.Capture Handshake or WPA Encryption",'green')
  print colored(" 7.Crack WPA Encrytion!",'green')
+ print colored(" 8.Crack WPA Encryption! [HASHCAT]",'green')
  print colored(" 9.Restart Service NetworkManager And Networking",'green')
  print colored("               ----EXTRAS----",'yellow')
  print colored(" 99.Create Wordlist [Crunch]",'red')
@@ -242,6 +244,10 @@ def mac():
 def hashcat_capture():
  file = raw_input("Insert Your Capture File: ")
  subprocess.Popen(args=["xterm","-hold","-e","aircrack-ng","-J" ,file])
+def hash():
+ file = raw_input("Insert Your Capture File: ")
+ wordlist = raw_input("insert your wordlist path: ")
+ subprocess.Popen(args=["xterm","-hold","-e","hashcat","-m","2500","-a","0",file,wordlist])
 while menu:
  menu()
  pilih()
