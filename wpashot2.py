@@ -122,6 +122,7 @@ def menu() :
  print " 5.Capture Packet Specific by Target Acces Point"
  print " 6.Capture Handshake or WPA Encryption"
  print " 7.Crack WPA Encrytion!"
+ print " 8.Crack WPA Encryption! [HASHCAT]"
  print " 9.Restart Service NetworkManager And Networking"
  print "               ----EXTRAS----"
  print " 99.Create Wordlist [Crunch]"
